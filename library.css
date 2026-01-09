@@ -16,11 +16,63 @@
     box-sizing: border-box;
     flex: 1
 }
- 
-.new-book-button {
-    margin-top: 10px;
-    padding: 5px 10px;
+.new-book button {
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
+}
+
+.new-book button:hover {
+    background-color: #0056b3;
+}
+
+#new-book-modal {
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    width: min(90vw, 400px);
+    font-family: Arial, sans-serif;
+}
+
+#new-book-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#new-book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#new-book-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.modal-actions button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-book-button {
+    background-color: #28a745;
+    color: white;
+}
+
+#cancel-button {
+    background-color: #ccc;
 }
