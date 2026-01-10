@@ -25,16 +25,17 @@ const book5 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180);
 // Adding sample books to the library
 myLibrary.push(book1, book2, book3, book4, book5);
 
-// 
+// Function to add a new book to the library
 function addBookToLibrary(title, author, pages, id) {
     const book = new Book(title, author, pages, id);
     myLibrary.push(book);
-  return ;
+  return book;
 }
 
 // Function to display books in the library
 function displayBooks() {
   const bookList = document.getElementById("book-list");
+  bookList.innerHTML = ""; // 👈 Clear Old Books before addign new list
 
   myLibrary.forEach((book) => {
     const bookItem = document.createElement("div");
@@ -47,25 +48,28 @@ function displayBooks() {
 // Initial display of books
 document.addEventListener("DOMContentLoaded", displayBooks);
 
+// Modal and form handling
 const modal = document.getElementById("new-book-modal");
 const form = document.getElementById("new-book-form");
 const cancelButton = document.getElementById("cancel-button");
 const newBookButton = document.getElementById("new-book-button");
 
+//
 function resetForm() {
     form.reset();
 }
 
+// Opening and closing the modal
+newBookButton.addEventListener("click", () => {
+    modal.showModal();
+});
+// cancel button functionality
 cancelButton.addEventListener("click", () => {
     modal.close();
     resetForm();
 });
 
-newBookButton.addEventListener("click", () => {
-    modal.showModal();
-});
-
-// Adding a new book
+// Adding a new book to library on form submission
 form.addEventListener("submit", function(event) {
     event.preventDefault();
     const formData = new FormData(form);
@@ -73,6 +77,7 @@ form.addEventListener("submit", function(event) {
     const author = formData.get("author");
     const pages = formData.get("pages");
     addBookToLibrary(title, author, pages);
+    displayBooks()
     modal.close();
     resetForm();
 });

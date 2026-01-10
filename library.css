@@ -5,16 +5,15 @@
     font-family: Arial, sans-serif;
 }   
 #book-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 40px;
 }
 .book-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: calc(33% - 30px);
-    box-sizing: border-box;
-    flex: 1
+    border: 1px solid #0056b3;
+    
 }
 .new-book button {
     margin-bottom: 20px;
