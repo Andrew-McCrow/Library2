@@ -39,7 +39,23 @@ function displayBooks() {
   myLibrary.forEach((book) => {
     const bookItem = document.createElement("div");
     bookItem.className = "book-item";
-    bookItem.innerText = book.title + " by " + book.author;
+
+    // Title (bold, top)
+    const title = document.createElement("strong");
+    title.textContent = book.title;
+
+    // Author (new line)
+    const author = document.createElement("div");
+    author.textContent = `by ${book.author}`;
+
+    // ID (last line)
+    const id = document.createElement("small");
+    id.textContent = `ID: ${book.id}`;
+
+    bookItem.appendChild(title);
+    bookItem.appendChild(author);
+    bookItem.appendChild(id);
+
     bookList.appendChild(bookItem);
   });
 }

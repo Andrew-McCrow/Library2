@@ -13,8 +13,31 @@
 }
 .book-item {
     border: 1px solid #0056b3;
-    
+    padding: 1rem;
+    margin-bottom: 1rem;   /* space between books */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
 }
+
+.book-item strong {
+  display: block;        /* forces new line */
+  text-align: center;    /* 👈 centers the title */
+  margin-bottom: 0.5rem; /* space below title */
+}
+
+.book-item div {
+  margin-bottom: 0.25rem; /* space below author */
+}
+
+.book-item small {
+  display: block;
+  margin-top: 0.5rem;    /* space above ID */
+  color: #666;
+}
+
 .new-book button {
     margin-bottom: 20px;
     padding: 8px 16px;
