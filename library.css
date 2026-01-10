@@ -38,6 +38,46 @@
   color: #666;
 }
 
+.read-status-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.read-status-toggle input[type="radio"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #888;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s ease;
+}
+
+.read-status-toggle input[type="radio"]::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+}
+
+.read-status-toggle input[type="radio"]:checked {
+    border-color: #dc3545;
+}
+
+.read-status-toggle input[type="radio"]:checked::after {
+    background-color: #dc3545;
+}
+
 .new-book button {
     margin-bottom: 20px;
     padding: 8px 16px;

@@ -54,11 +54,7 @@ function displayBooks() {
     const id = document.createElement("small");
     id.textContent = `ID: ${book.id}`;
 
-    // read status (new line)
-    const readStatus = document.createElement("small");
-    readStatus.textContent = `Read Status: ${book.read ? "Read" : "Not Read"}`;
-
-    // Add button to book item
+    // Add remove button to book item
     const bookRemoveButton = document.createElement("button"); 
     bookRemoveButton.textContent = "Remove";
     bookRemoveButton.className = "remove-button";
@@ -67,20 +63,33 @@ function displayBooks() {
       displayBooks();
     });
 
-    // Add button to change read status
-    const readToggleButton = document.createElement("button");
-    readToggleButton.textContent = "Toggle Read Status";
-    readToggleButton.className = "read-toggle-button";
-    readToggleButton.addEventListener("click", () => {
+    // radio button to change read status
+    const readToggleWrapper = document.createElement("label");
+    readToggleWrapper.className = "read-status-toggle";
+
+    const readToggleInput = document.createElement("input");
+    readToggleInput.type = "radio";
+    readToggleInput.name = `read-status-${book.id}`;
+    readToggleInput.checked = book.read;
+    readToggleInput.setAttribute("aria-label", "Read status");
+
+    const readToggleText = document.createElement("small");
+    readToggleText.textContent = book.read ? "Read" : "Not Read";
+
+    readToggleInput.addEventListener("click", (event) => {
+      event.preventDefault();
       book.toggleRead();
-      displayBooks();
+      readToggleInput.checked = book.read;
+      readToggleText.textContent = book.read ? "Read" : "Not Read";
     });
+
+    readToggleWrapper.appendChild(readToggleInput);
+    readToggleWrapper.appendChild(readToggleText);
     
     bookItem.appendChild(title);
     bookItem.appendChild(author);
     bookItem.appendChild(id);
-    bookItem.appendChild(readStatus);
-    bookItem.appendChild(readToggleButton);
+    bookItem.appendChild(readToggleWrapper);
     bookItem.appendChild(bookRemoveButton);   
 
     bookList.appendChild(bookItem);
