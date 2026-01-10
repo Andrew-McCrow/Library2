@@ -1,10 +1,11 @@
 // constructor function for Book objects
-function Book(title, author) {
+function Book(title, author, read = false) {
   if (!new.target) {
     throw Error("You must use the 'new' operator to call the constructor");
   }
   this.title = title;
   this.author = author;
+  this.read = read;
   this.id = crypto.randomUUID()
   this.info = function() {
     return this.title + " by " + this.author + ", " + this.id;
@@ -25,8 +26,8 @@ const book5 = new Book("The Great Gatsby", "F. Scott Fitzgerald");
 myLibrary.push(book1, book2, book3, book4, book5);
 
 // Function to add a new book to the library
-function addBookToLibrary(title, author, id) {
-    const book = new Book(title, author, id);
+function addBookToLibrary(title, author) {
+    const book = new Book(title, author);
     myLibrary.push(book);
   return book;
 }
@@ -52,19 +53,36 @@ function displayBooks() {
     const id = document.createElement("small");
     id.textContent = `ID: ${book.id}`;
 
+    // read status (new line)
+    const readStatus = document.createElement("small");
+    readStatus.textContent = `Read Status: ${book.read ? "Read" : "Not Read"}`;
+
     // Add button to book item
-    const bookButton = document.createElement("button"); 
-    bookButton.textContent = "Remove";
-    bookButton.className = "remove-button";
-    bookButton.addEventListener("click", () => {
+    const bookRemoveButton = document.createElement("button"); 
+    bookRemoveButton.textContent = "Remove";
+    bookRemoveButton.className = "remove-button";
+    bookRemoveButton.addEventListener("click", () => {
       myLibrary = myLibrary.filter((b) => b.id !== book.id);
       displayBooks();
     });
+
+    // Add button to change read status
+    const readToggleButton = document.createElement("button");
+    readToggleButton.textContent = "Toggle Read Status";
+    readToggleButton.className = "read-toggle-button";
+    readToggleButton.addEventListener("click", () => {
+      book.read = !book.read;
+      displayBooks();
+    });
+    
+    
     
     bookItem.appendChild(title);
     bookItem.appendChild(author);
     bookItem.appendChild(id);
-    bookItem.appendChild(bookButton);   
+    bookItem.appendChild(readStatus);
+    bookItem.appendChild(readToggleButton);
+    bookItem.appendChild(bookRemoveButton);   
 
     bookList.appendChild(bookItem);
   });
