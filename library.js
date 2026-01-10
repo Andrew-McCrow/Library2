@@ -7,10 +7,11 @@ function Book(title, author, read = false) {
   this.author = author;
   this.read = read;
   this.id = crypto.randomUUID()
-  this.info = function() {
-    return this.title + " by " + this.author + ", " + this.id;
-  };
 }
+
+// Addign methods to Book prototype
+Book.prototype.toggleRead = function () { this.read = !this.read; };
+Book.prototype.getInfo = function () { return this.title + " by " + this.author + ", " + this.id; };
 
 // library array to hold Book objects
 let myLibrary = [];
@@ -71,11 +72,9 @@ function displayBooks() {
     readToggleButton.textContent = "Toggle Read Status";
     readToggleButton.className = "read-toggle-button";
     readToggleButton.addEventListener("click", () => {
-      book.read = !book.read;
+      book.toggleRead();
       displayBooks();
     });
-    
-    
     
     bookItem.appendChild(title);
     bookItem.appendChild(author);
