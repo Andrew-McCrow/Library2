@@ -52,9 +52,19 @@ function displayBooks() {
     const id = document.createElement("small");
     id.textContent = `ID: ${book.id}`;
 
+    // Add button to book item
+    const bookButton = document.createElement("button"); 
+    bookButton.textContent = "Remove";
+    bookButton.className = "remove-button";
+    bookButton.addEventListener("click", () => {
+      myLibrary = myLibrary.filter((b) => b.id !== book.id);
+      displayBooks();
+    });
+    
     bookItem.appendChild(title);
     bookItem.appendChild(author);
     bookItem.appendChild(id);
+    bookItem.appendChild(bookButton);   
 
     bookList.appendChild(bookItem);
   });

@@ -48,6 +48,16 @@
     cursor: pointer;
 }
 
+.remove-button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 .new-book button:hover {
     background-color: #0056b3;
 }
