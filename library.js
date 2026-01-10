@@ -1,14 +1,13 @@
 // constructor function for Book objects
-function Book(title, author, pages, read) {
+function Book(title, author) {
   if (!new.target) {
     throw Error("You must use the 'new' operator to call the constructor");
   }
   this.title = title;
   this.author = author;
-  this.pages = pages;
   this.id = crypto.randomUUID()
   this.info = function() {
-    return this.title + " by " + this.author + ", " + this.pages + " pages, " + this.id;
+    return this.title + " by " + this.author + ", " + this.id;
   };
 }
 
@@ -16,18 +15,18 @@ function Book(title, author, pages, read) {
 let myLibrary = [];
 
 // Sample books
-const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 310);
-const book2 = new Book("1984", "George Orwell", 328);
-const book3 = new Book("To Kill a Mockingbird", "Harper Lee", 281);
-const book4 = new Book("Pride and Prejudice", "Jane Austen", 279);
-const book5 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180);
+const book1 = new Book("The Hobbit", "J.R.R. Tolkien");
+const book2 = new Book("1984", "George Orwell");
+const book3 = new Book("To Kill a Mockingbird", "Harper Lee");
+const book4 = new Book("Pride and Prejudice", "Jane Austen");
+const book5 = new Book("The Great Gatsby", "F. Scott Fitzgerald");
 
 // Adding sample books to the library
 myLibrary.push(book1, book2, book3, book4, book5);
 
 // Function to add a new book to the library
-function addBookToLibrary(title, author, pages, id) {
-    const book = new Book(title, author, pages, id);
+function addBookToLibrary(title, author, id) {
+    const book = new Book(title, author, id);
     myLibrary.push(book);
   return book;
 }
@@ -40,7 +39,7 @@ function displayBooks() {
   myLibrary.forEach((book) => {
     const bookItem = document.createElement("div");
     bookItem.className = "book-item";
-    bookItem.innerText = book.info();
+    bookItem.innerText = book.title + " by " + book.author;
     bookList.appendChild(bookItem);
   });
 }
@@ -75,8 +74,7 @@ form.addEventListener("submit", function(event) {
     const formData = new FormData(form);
     const title = formData.get("title");
     const author = formData.get("author");
-    const pages = formData.get("pages");
-    addBookToLibrary(title, author, pages);
+    addBookToLibrary(title, author);
     displayBooks()
     modal.close();
     resetForm();
