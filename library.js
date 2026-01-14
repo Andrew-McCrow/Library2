@@ -9,7 +9,7 @@ function Book(title, author, read = false) {
   this.id = crypto.randomUUID()
 }
 
-// Addign methods to Book prototype
+// Adding methods to Book prototype
 Book.prototype.toggleRead = function () { this.read = !this.read; };
 Book.prototype.getInfo = function () { return this.title + " by " + this.author + ", " + this.id; };
 
