@@ -1,17 +1,20 @@
-// constructor function for Book objects
-function Book(title, author, read = false) {
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
+class Book {
+  constructor(title, author, read = false) {
+    this.title = title;
+    this.author = author;
+    this.read = read;
+    this.id = crypto.randomUUID();
   }
-  this.title = title;
-  this.author = author;
-  this.read = read;
-  this.id = crypto.randomUUID()
+
+  toggleRead() {
+    this.read = !this.read;
+  }
+
+  getInfo() {
+    return `${this.title} by ${this.author}, ${this.id}`;
+  }
 }
 
-// Adding methods to Book prototype
-Book.prototype.toggleRead = function () { this.read = !this.read; };
-Book.prototype.getInfo = function () { return this.title + " by " + this.author + ", " + this.id; };
 
 // library array to hold Book objects
 let myLibrary = [];
