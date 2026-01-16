@@ -1,3 +1,5 @@
+
+// Book class definition
 class Book {
   constructor(title, author, read = false) {
     this.title = title;
