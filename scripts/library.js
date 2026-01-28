@@ -1,4 +1,3 @@
-
 // Book class definition
 class Book {
   constructor(title, author, read = false) {
@@ -36,6 +35,31 @@ function addBookToLibrary(title, author) {
     const book = new Book(title, author);
     myLibrary.push(book);
   return book;
+}
+
+// From validation function - check tile and author are not empty in "New Book" form
+function validateFrom() {
+    const title = document.getElementById("book-title");
+    const author = document.getElementById("book-author");
+
+    // Validate on input
+    title.addEventListener("input", () => {
+        if (title.value.trim() === "") {
+            title.setCustomValidity("Title cannot be empty.");
+        } else {
+            title.setCustomValidity("");
+        }
+        title.reportValidity();
+    });
+
+    author.addEventListener("input", () => {
+        if (author.value.trim() === "") {
+            author.setCustomValidity("Author cannot be empty.");
+        } else {
+            author.setCustomValidity("");
+        }
+        author.reportValidity();
+    });
 }
 
 // Function to display books in the library
@@ -102,7 +126,10 @@ function displayBooks() {
 }
 
 // Initial display of books
-document.addEventListener("DOMContentLoaded", displayBooks);
+document.addEventListener("DOMContentLoaded", () => {
+    displayBooks();
+    validateFrom();
+});
 
 // Modal and form handling
 const modal = document.getElementById("new-book-modal");
@@ -128,6 +155,13 @@ cancelButton.addEventListener("click", () => {
 // Adding a new book to library on form submission
 form.addEventListener("submit", function(event) {
     event.preventDefault();
+    
+    // Check if form is valid
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+    
     const formData = new FormData(form);
     const title = formData.get("title");
     const author = formData.get("author");
